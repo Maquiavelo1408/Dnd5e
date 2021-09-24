@@ -11,5 +11,7 @@ namespace Dnd5e.Entities
         public int CharacterId { get; set; }
         public int SkillId { get; set; }
         public SkillBonusType SkillBonusType { get; set; } 
+        public Character Character { get; set; }
+        public Skill Skill { get; set; }
     }
 }

@@ -4,14 +4,16 @@ using Dnd5e;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Dnd5e.Migrations
 {
     [DbContext(typeof(CharacterContext))]
-    partial class CharacterContextModelSnapshot : ModelSnapshot
+    [Migration("20210923123756_AddedRelations")]
+    partial class AddedRelations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,17 +29,10 @@ namespace Dnd5e.Migrations
                     b.Property<int>("SkillId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CharacterAttributeId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.HasKey("AttributeId", "SkillId");
-
-                    b.HasIndex("CharacterAttributeId");
-
-                    b.HasIndex("SkillId");
 
                     b.ToTable("AttributeSkills");
                 });
@@ -168,23 +163,6 @@ namespace Dnd5e.Migrations
                     b.HasKey("SkillId");
 
                     b.ToTable("Skills");
-                });
-
-            modelBuilder.Entity("Dnd5e.Entities.AttributeSkill", b =>
-                {
-                    b.HasOne("Dnd5e.Entities.CharacterAttribute", "CharacterAttribute")
-                        .WithMany()
-                        .HasForeignKey("CharacterAttributeId");
-
-                    b.HasOne("Dnd5e.Entities.Skill", "Skill")
-                        .WithMany()
-                        .HasForeignKey("SkillId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CharacterAttribute");
-
-                    b.Navigation("Skill");
                 });
 
             modelBuilder.Entity("Dnd5e.Entities.Character", b =>

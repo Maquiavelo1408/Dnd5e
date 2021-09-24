@@ -4,43 +4,22 @@ using Dnd5e;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Dnd5e.Migrations
 {
     [DbContext(typeof(CharacterContext))]
-    partial class CharacterContextModelSnapshot : ModelSnapshot
+    [Migration("20210923074527_DeleteIdClassField")]
+    partial class DeleteIdClassField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Dnd5e.Entities.AttributeSkill", b =>
-                {
-                    b.Property<int>("AttributeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SkillId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CharacterAttributeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("AttributeId", "SkillId");
-
-                    b.HasIndex("CharacterAttributeId");
-
-                    b.HasIndex("SkillId");
-
-                    b.ToTable("AttributeSkills");
-                });
 
             modelBuilder.Entity("Dnd5e.Entities.Character", b =>
                 {
@@ -98,27 +77,6 @@ namespace Dnd5e.Migrations
                     b.ToTable("Characters");
                 });
 
-            modelBuilder.Entity("Dnd5e.Entities.CharacterAttribute", b =>
-                {
-                    b.Property<int>("CharacterAttributeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AttributeType")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Prerequisite")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CharacterAttributeId");
-
-                    b.ToTable("CharacterAttributes");
-                });
-
             modelBuilder.Entity("Dnd5e.Entities.CharacterSkill", b =>
                 {
                     b.Property<int>("CharacterId")
@@ -131,8 +89,6 @@ namespace Dnd5e.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("CharacterId", "SkillId");
-
-                    b.HasIndex("SkillId");
 
                     b.ToTable("CharacterSkills");
                 });
@@ -170,23 +126,6 @@ namespace Dnd5e.Migrations
                     b.ToTable("Skills");
                 });
 
-            modelBuilder.Entity("Dnd5e.Entities.AttributeSkill", b =>
-                {
-                    b.HasOne("Dnd5e.Entities.CharacterAttribute", "CharacterAttribute")
-                        .WithMany()
-                        .HasForeignKey("CharacterAttributeId");
-
-                    b.HasOne("Dnd5e.Entities.Skill", "Skill")
-                        .WithMany()
-                        .HasForeignKey("SkillId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CharacterAttribute");
-
-                    b.Navigation("Skill");
-                });
-
             modelBuilder.Entity("Dnd5e.Entities.Character", b =>
                 {
                     b.HasOne("Dnd5e.Entities.Classes", "Classes")
@@ -194,25 +133,6 @@ namespace Dnd5e.Migrations
                         .HasForeignKey("ClassesId");
 
                     b.Navigation("Classes");
-                });
-
-            modelBuilder.Entity("Dnd5e.Entities.CharacterSkill", b =>
-                {
-                    b.HasOne("Dnd5e.Entities.Character", "Character")
-                        .WithMany()
-                        .HasForeignKey("CharacterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Dnd5e.Entities.Skill", "Skill")
-                        .WithMany()
-                        .HasForeignKey("SkillId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Character");
-
-                    b.Navigation("Skill");
                 });
 
             modelBuilder.Entity("Dnd5e.Entities.Classes", b =>

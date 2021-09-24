@@ -8,11 +8,29 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CreateCharacter">
 
-    <Grid>
-        <TextBlock FontSize="17" Margin="10,5,0,0" Width="110" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" FontStretch="ExtraCondensed" Padding="20">New Character</TextBlock>
-        <Label>Name:</Label>
+    <Grid Height="350" Width="725" Background="IndianRed">
+        <TextBlock FontSize="17" Margin="10,5,0,0" Width="110" Height="23" HorizontalAlignment="Center" Name="txtNewCharacter" VerticalAlignment="Top" Padding="20" Text="afaefae"/>
         <Grid Margin="31, 0, 29, 23" Background="White" Height="264" VerticalAlignment="Bottom">
-            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="252*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="30, 20,0,0" x:Name="txtBlockCharacterName" VerticalAlignment="Top" Width="110" Text="Character Name:"/>
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="30, 50,0,0" x:Name="txtBlockStrengthScore" VerticalAlignment="Top" Width="110" Text="Strength Score:"/>
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="30, 80,0,0" x:Name="txtBlockDexterityScore" VerticalAlignment="Top" Width="110" Text="Dexterity Score:"/>
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="30, 107,0,0" x:Name="txtBlockConstitutionScore" VerticalAlignment="Top" Width="110" Text="Constitution Score:"/>
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="30, 136,0,0" x:Name="txtBlockIntelligenceScore" VerticalAlignment="Top" Width="110" Text="Intelligence Score:"/>
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="30, 166,0,0" x:Name="txtBlockWisdomScore" VerticalAlignment="Top" Width="110" Text="Wisdom Score:"/>
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="30, 196,0,0" x:Name="txtBlockCharismaScore" VerticalAlignment="Top" Width="110" Text="Charisma Score:"/>
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="150, 20, 0,0" Name="txtBoxCharacterName" VerticalAlignment="Top" Width="100"/>
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="150, 50, 0,0" Name="txtBoxStregthScore" VerticalAlignment="Top" Width="100" PreviewTextInput="NumberValidation"/>
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="150, 80, 0,0" Name="txtBoxDexterityScore" VerticalAlignment="Top" Width="100" PreviewTextInput="NumberValidation"/>
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="150, 107, 0,0" Name="txtBoxConstitutionScore" VerticalAlignment="Top" Width="100" PreviewTextInput="NumberValidation"/>
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="150, 136, 0,0" Name="txtBoxIntelligenceScore" VerticalAlignment="Top" Width="100"  PreviewTextInput="NumberValidation" />
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="150, 166, 0,0" Name="txtBoxWisdomScore" VerticalAlignment="Top" Width="100" PreviewTextInput="NumberValidation"/>
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="150, 196, 0,0" Name="txtBoxCharismaScore" VerticalAlignment="Top" Width="100" PreviewTextInput="NumberValidation"/>
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="275,20,0,0" x:Name="txtBlockClass" VerticalAlignment="Top" Width="110" Text="Class:"/>
+            <ComboBox x:Name="comboBoxClass" Height="23" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="350, 20, 0,0"/>
+            <Button Content="Save..." HorizontalAlignment="Left" Margin="150, 206, 0,0" Height="23" Click="SaveCharacter"></Button>
         </Grid>
     </Grid>
 </Page>
